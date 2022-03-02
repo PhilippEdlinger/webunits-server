@@ -23,6 +23,22 @@ public class Student extends Person {
         this.studentTables = studentTables;
     }
 
+    public void addAbsent(Absent absent) {
+        this.absentList.add(absent);
+    }
+
+    public void removeAbsent(Absent absent) {
+        this.absentList.remove(absent);
+    }
+
+    public void addStudentTable(StudentTable studentTable) {
+        this.studentTables.add(studentTable);
+    }
+
+    public void removeStudentTable(StudentTable studentTable) {
+        this.studentTables.remove(studentTable);
+    }
+
     public ClassET getClassET() {
         return classET;
     }

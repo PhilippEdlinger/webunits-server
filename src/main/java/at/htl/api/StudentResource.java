@@ -1,12 +1,10 @@
 package at.htl.api;
 
+import at.htl.workloads.student.StudentRepo;
 import at.htl.workloads.student.StudentService;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -23,5 +21,15 @@ public class StudentResource {
     public Response getAll(){
         var allStudents = this.studentService.getAll();
         return Response.ok(allStudents).build();
+    }
+
+    @GET
+    @Path("{id}")
+    public Response getById(@PathParam("id") Long id) {
+        var student = this.studentService.get(id);
+    if (student == null) {
+        return Response.status(400).build();
+    }
+        return Response.ok(student).build();
     }
 }
