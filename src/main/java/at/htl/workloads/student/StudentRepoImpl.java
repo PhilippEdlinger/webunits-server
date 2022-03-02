@@ -1,11 +1,14 @@
 package at.htl.workloads.student;
 
 import at.htl.models.Student;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@ApplicationScoped
 public class StudentRepoImpl implements StudentRepo{
 
     @Inject

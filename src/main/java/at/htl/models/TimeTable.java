@@ -1,6 +1,7 @@
 package at.htl.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class TimeTable {
@@ -11,21 +12,28 @@ public class TimeTable {
     private Long day;
     private Long lessonTime;
 
-    @ManyToOne
-    Subject subject;
+    @OneToMany(mappedBy = "timeTable", cascade = CascadeType.REFRESH)
+    private List<Subject> subjectList;
 
-     @ManyToOne
-     Teacher teacher;
+    @ManyToOne
+    private Teacher teacher;
 
     @ManyToOne
     private RoomET roomET;
 
-    public TimeTable() {}
+    @ManyToOne
+    private SeatOrder seatOrder;
 
-    public TimeTable(Long id, Long day, Long lessonTime) {
-        this.id = id;
+    public TimeTable() {
+    }
+
+    public TimeTable(Long day, Long lessonTime, List<Subject> subjectList, Teacher teacher, RoomET roomET, SeatOrder seatOrder) {
         this.day = day;
         this.lessonTime = lessonTime;
+        this.subjectList = subjectList;
+        this.teacher = teacher;
+        this.roomET = roomET;
+        this.seatOrder = seatOrder;
     }
 
     public Long getId() {
@@ -50,5 +58,37 @@ public class TimeTable {
 
     public void setLessonTime(Long lessonTime) {
         this.lessonTime = lessonTime;
+    }
+
+    public List<Subject> getSubjectList() {
+        return subjectList;
+    }
+
+    public void setSubjectList(List<Subject> subjectList) {
+        this.subjectList = subjectList;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public RoomET getRoomET() {
+        return roomET;
+    }
+
+    public void setRoomET(RoomET roomET) {
+        this.roomET = roomET;
+    }
+
+    public SeatOrder getSeatOrder() {
+        return seatOrder;
+    }
+
+    public void setSeatOrder(SeatOrder seatOrder) {
+        this.seatOrder = seatOrder;
     }
 }

@@ -2,8 +2,7 @@ package at.htl.models;
 
 import javax.persistence.*;
 
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 public abstract class Person {
     @Id
@@ -15,8 +14,7 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(Long personId, String firstName, String lastName) {
-        this.personId = personId;
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

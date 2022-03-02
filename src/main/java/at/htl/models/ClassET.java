@@ -1,6 +1,7 @@
 package at.htl.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class ClassET {
@@ -11,10 +12,13 @@ public class ClassET {
     private String name;
 
     @ManyToOne
-    SeatOrder seatOrder;
-
-    @ManyToOne
     TimeTable timeTable;
+
+    @OneToMany(mappedBy = "classET", cascade = CascadeType.ALL)
+    private List<Student> studentList;
+
+    @OneToOne
+    private Teacher classTeacher;
 
     public ClassET() {
     }
@@ -22,14 +26,6 @@ public class ClassET {
     public ClassET(Long id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public SeatOrder getSeatOrder() {
-        return seatOrder;
-    }
-
-    public void setSeatOrder(SeatOrder seatOrder) {
-        this.seatOrder = seatOrder;
     }
 
     public TimeTable getTimeTable() {
@@ -56,4 +52,11 @@ public class ClassET {
         this.name = name;
     }
 
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
 }

@@ -10,15 +10,16 @@ public class RoomET {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany
+    @OneToMany(mappedBy = "room")
     private List<TableET> tableETList;
 
     public RoomET() {
     }
 
-    public RoomET(Long id, String name) {
+    public RoomET(Long id, String name, List<TableET> tableETList) {
         this.id = id;
         this.name = name;
+        this.tableETList = tableETList;
     }
 
     public Long getId() {
@@ -35,5 +36,13 @@ public class RoomET {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<TableET> getTableETList() {
+        return tableETList;
+    }
+
+    public void setTableETList(List<TableET> tableETList) {
+        this.tableETList = tableETList;
     }
 }

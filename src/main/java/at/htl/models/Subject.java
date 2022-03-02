@@ -1,9 +1,6 @@
 package at.htl.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Subject {
@@ -13,12 +10,16 @@ public class Subject {
     private Long id;
     private String name;
 
+    @ManyToOne
+    private TimeTable timeTable;
+
     public Subject() {
     }
 
-    public Subject(Long id, String name) {
+    public Subject(Long id, String name, TimeTable timeTable) {
         this.id = id;
         this.name = name;
+        this.timeTable = timeTable;
     }
 
     public Long getId() {
@@ -35,5 +36,13 @@ public class Subject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public TimeTable getTimeTable() {
+        return timeTable;
+    }
+
+    public void setTimeTable(TimeTable timeTable) {
+        this.timeTable = timeTable;
     }
 }

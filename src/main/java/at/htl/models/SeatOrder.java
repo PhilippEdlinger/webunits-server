@@ -1,6 +1,7 @@
 package at.htl.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class SeatOrder {
@@ -9,15 +10,19 @@ public class SeatOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(mappedBy = "seatOrder")
+    private List<StudentTable> studentTableList;
+
     @ManyToOne
-    RoomET room;
+    private TimeTable timeTable;
 
     public SeatOrder() {
     }
 
-    public SeatOrder(Long id, RoomET room) {
+    public SeatOrder(Long id, List<StudentTable> studentTableList, TimeTable timeTable) {
         this.id = id;
-        this.room = room;
+        this.studentTableList = studentTableList;
+        this.timeTable = timeTable;
     }
 
     public Long getId() {
@@ -28,11 +33,19 @@ public class SeatOrder {
         this.id = id;
     }
 
-    public RoomET getRoom() {
-        return room;
+    public List<StudentTable> getStudentTableList() {
+        return studentTableList;
     }
 
-    public void setRoom(RoomET room) {
-        this.room = room;
+    public void setStudentTableList(List<StudentTable> studentTableList) {
+        this.studentTableList = studentTableList;
+    }
+
+    public TimeTable getTimeTable() {
+        return timeTable;
+    }
+
+    public void setTimeTable(TimeTable timeTable) {
+        this.timeTable = timeTable;
     }
 }

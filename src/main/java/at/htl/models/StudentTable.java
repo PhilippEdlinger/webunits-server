@@ -12,4 +12,19 @@ public class StudentTable {
     @ManyToOne
     private SeatOrder seatOrder;
 
+    public StudentTableId getStudentTableId() {
+        return studentTableId;
+    }
+
+    public void setStudentTableId(StudentTableId studentTableId) {
+        this.studentTableId = studentTableId;
+    }
+
+    public SeatOrder getSeatOrder() {
+        return seatOrder;
+    }
+
+    public void setSeatOrder(SeatOrder seatOrder) {
+        this.seatOrder = seatOrder;
+    }
 }

@@ -11,7 +11,7 @@ public class Absent {
     private Long id;
 
     @ManyToOne
-    Student student;
+    private Student student;
 
     private LocalDateTime timeStart;
     private LocalDateTime timeEnd;
